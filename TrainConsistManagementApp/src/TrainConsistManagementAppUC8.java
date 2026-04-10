@@ -1,6 +1,6 @@
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Train Consist Management App
@@ -8,7 +8,7 @@ import java.util.List;
  * Author: Developer
  * Version: 7.0
  */
-public class TrainConsistManagementAppUC7 {
+public class TrainConsistManagementAppUC8 {
 
     // Inner Bogie class to model passenger bogies
     static class Bogie {
@@ -48,7 +48,9 @@ public class TrainConsistManagementAppUC7 {
         }
 
         // Sort using Comparator based on capacity
-        bogies.sort(Comparator.comparingInt(b -> b.capacity));
+        List<Bogie> filteredBogies = bogies.stream()
+                .filter(b -> b.capacity > 70)
+                .collect(Collectors.toList());
 
         // Display after sorting
         System.out.println("\nAfter Sorting by Capacity:");
